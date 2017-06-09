@@ -1,6 +1,7 @@
 \ Copyright 2017 Fredrik Noring
 
 require aux/reverse.fth
+require aux/sort.fth
 require math/gcd.fth
 
 \ Remove n1 from the stack and then remove n1 additional stack items.
