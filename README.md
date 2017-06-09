@@ -70,6 +70,15 @@ exponents. Thus `22477 factor-exponents` gives `19 1 13 2 7 1 3` where the top
 integer `3` indicates the number of distinct primes, followed by the pairs of
 primes and exponents corresponding to 7<sup>1</sup>·13<sup>2</sup>·19<sup>1</sup>.
 
+## Exponents
+
+The file [math/exponent.fth](math/exponent.fth) defines words related to
+[exponentiation](https://en.wikipedia.org/wiki/Exponentiation).
+
+The word `**` computes integer exponentiation using efficient
+[exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
+For example, `3 4 **` gives `81` which corresponds to 3<sup>4</sup> = 81.
+
 ## Fibonacci numbers
 
 The file [math/fibonacci.fth](math/fibonacci.fth) defines words related to
