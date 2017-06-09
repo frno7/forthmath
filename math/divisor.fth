@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/sort.fth
+require aux/sort.fth
 require math/exponent.fth
 require math/factor.fth
 

@@ -2,7 +2,7 @@
 
 require ttester.fth
 
-require core/sort.fth
+require aux/sort.fth
 
 T{       0 sort> ->       }T
 T{     0 1 sort> ->     0 }T

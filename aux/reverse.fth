@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/nallot.fth
+require aux/nallot.fth
 
 \ Remove n from the stack and reverse the order of the n following stack items.
 : reverse ( n * x n --- n * x )

@@ -2,7 +2,7 @@
 
 require ttester.fth
 
-require core/nallot.fth
+require aux/nallot.fth
 
 T{                0 n>allot 0 nallot> ->                }T
 T{             11 1 n>allot 1 nallot> ->             11 }T

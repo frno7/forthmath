@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/reverse.fth
+require aux/reverse.fth
 
 \ Remove xt from the stack and compute the Fibonacci numbers F_0, F_1, ....
 \ The invoked xt has the stack effect ( i * x n -- j * x flag ).

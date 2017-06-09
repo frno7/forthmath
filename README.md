@@ -133,3 +133,25 @@ integer arithmetics only, where the inequalities `log2-floor` ≤
 log<sub>2</sub> ≤ `log2-ceil` hold for any number.  Similarly, `ln-lower`
 and `ln-upper` give quick estimates with the inequalities `ln-lower` ≤
 ln ≤ `ln-upper`.
+
+## Auxiliary
+
+The files [aux/nallot.fth](aux/nallot.fth),
+[aux/reverse.fth](aux/reverse.fth) and [aux/sort.fth](aux/sort.fth)
+define auxiliary words.
+
+Many algorithms need [direct access](https://en.wikipedia.org/wiki/Random_access)
+memory to work effectively. The `n>allot` and `nallot>` words move _n_ cells
+from the stack to data space and vice versa. This makes it possible to use data
+space as a scratch pad, similar to `>r` and `nr>`.
+
+The word `reverse` reversers a given number of items on the stack.
+
+The generic `sort` function takes an execution token for comparisions.
+The words `sort>` and `sort<` order a given number of items on the stack,
+in ascending or descending order, and are implemented as:
+
+```forth
+: sort> ( n * x n -- n * x ) ['] > sort ; \ Sort in ascending order.
+: sort< ( n * x n -- n * x ) ['] < sort ; \ Sort in descending order.
+```

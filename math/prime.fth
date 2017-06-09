@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/reverse.fth
+require aux/reverse.fth
 require math/factor.fth
 require math/log.fth
 

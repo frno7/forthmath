@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/reverse.fth
+require aux/reverse.fth
 
 \ Remove n1 from the stack and then remove n1 additional stack items.
 : ndrop ( n1 * n n1 -- ) 0 +do drop loop ; \ FIXME

@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-require core/nallot.fth
+require aux/nallot.fth
 
 \ Remove xt, address and cell count from the stack. Execute xt to compare any
 \ two cells. The invoked xt has the stack effect ( i * x x2 x1 -- j * x flag).

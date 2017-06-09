@@ -2,7 +2,7 @@
 
 require ttester.fth
 
-require core/reverse.fth
+require aux/reverse.fth
 
 T{                0 reverse ->                }T
 T{             11 1 reverse -> 11             }T
