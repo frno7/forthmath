@@ -20,6 +20,11 @@
 \ the stack to the memory starting at the address.
 : n! ( n * x n a -- ) swap 0 +do dup -rot ! cell+ loop drop ;
 
+\ Remove address and n from the stack, and then move n additional items from
+\ the stack to the memory starting at the address. The address is
+\ predecreased for every copied item.
+: -n! ( n * x n a -- ) swap 0 +do cell- dup -rot ! loop drop ;
+
 \ Remove address and n from the stack, and then copy n items from
 \ the memory starting at the address to the stack.
 : n@ ( n a -- n * x ) swap 0 +do dup @ swap cell+ loop drop ;

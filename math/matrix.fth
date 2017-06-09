@@ -5,9 +5,20 @@ require aux/nallot.fth
 : matrix-rows { a -- n } a @ ;
 : matrix-cols { a -- n } a cell+ @ ;
 : matrix-dimensions { a -- n n } a matrix-cols a matrix-rows ;
-: matrix>allot ( i * n n n -- ) 2dup * 2 + n>allot ;
+
+: matrix>allot ( i * n n n -- )
+	here { cols rows a }
+	cols rows * 2 + cells allot
+	cols rows 2 a n!
+	cols rows * dup 2 + cells a + -n! ;
+
 : matrix-allot { a -- } a matrix-dimensions * 2 + negate cells allot ;
-: allot>matrix { a -- } a matrix-dimensions * 2 + nallot> ;
+
+: allot>matrix ( a -- )
+	dup matrix-dimensions { a cols rows }
+	cols rows * a 2 cells + n@
+	cols rows ;
+
 : matrix@ { col row a -- } a matrix-cols row * col + 2 + cells a + @ ;
 : matrix! { col row a -- } a matrix-cols row * col + 2 + cells a + ! ;
 
