@@ -72,7 +72,8 @@ primes and exponents corresponding to 7<sup>1</sup>·13<sup>2</sup>·19<sup>1</s
 
 ## Divisors
 
-The file [math/divisor.fth](math/divisor.fth) defines words related to
+The files [math/divisor.fth](math/divisor.fth) and
+[math/gcd.fth](math/gcd.fth) define words related to
 [divisor functions](https://en.wikipedia.org/wiki/Divisor_function).
 
 The word `divisors` gives the divisors of a number. For example,
@@ -83,6 +84,17 @@ the divisor count and then the divisors follow from smallest to largest.
 The word `divisor-sum` implements the sum of positive divisors (sigma)
 function σ<sub>x</sub>(n). With x = 0 the function corresponds to
 `divisor-count`.
+
+The word `gcd` gives the
+[greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor).
+For example, `12 18 gcd` gives `6`. The word `lcm` gives the corresponding
+[least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple).
+For example, `6 21 lcm` gives `42`. The word `extended-gcd` implements the
+[extended Euclidean algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
+that gives two addional integers related to
+[Bézout’s identity](https://en.wikipedia.org/wiki/B%C3%A9zout%27s_identity).
+For example, `240 46 extended-gcd` gives `-9 47 2` where `2` is the greatest
+common divisor and the identity holds as -9·240 + 47·46 = 2 = gcd(240, 46).
 
 ## Exponents
 

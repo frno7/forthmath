@@ -5,6 +5,7 @@ include test-euler-phi.fth
 include test-exponent.fth
 include test-factor.fth
 include test-fibonacci.fth
+include test-gcd.fth
 include test-log.fth
 include test-nallot.fth
 include test-prime.fth
