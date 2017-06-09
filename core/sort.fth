@@ -12,8 +12,8 @@ require core/nallot.fth
 		i 0 +do
 			a j i - cells + dup -1 cells + 2dup @ swap @ 2dup
 			xt execute
-			if	2drop 2drop leave
-			else	rot ! swap !
+			if	rot ! swap !
+			else	2drop 2drop leave
 			then
 		loop
 	loop ;
