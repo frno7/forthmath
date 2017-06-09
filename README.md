@@ -70,6 +70,20 @@ exponents. Thus `22477 factor-exponents` gives `19 1 13 2 7 1 3` where the top
 integer `3` indicates the number of distinct primes, followed by the pairs of
 primes and exponents corresponding to 7<sup>1</sup>·13<sup>2</sup>·19<sup>1</sup>.
 
+## Divisors
+
+The file [math/divisor.fth](math/divisor.fth) defines words related to
+[divisor functions](https://en.wikipedia.org/wiki/Divisor_function).
+
+The word `divisors` gives the divisors of a number. For example,
+`52 divisors` gives `52 26 13 4 2 1 6` where the top integer `6` indicates
+the divisor count and then the divisors follow from smallest to largest.
+`traverse-divisors` can be used to iterate over all divisors.
+
+The word `divisor-sum` implements the sum of positive divisors (sigma)
+function σ<sub>x</sub>(n). With x = 0 the function corresponds to
+`divisor-count`.
+
 ## Exponents
 
 The file [math/exponent.fth](math/exponent.fth) defines words related to
