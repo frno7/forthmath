@@ -16,3 +16,16 @@
             e 1 rshift to e
       repeat r
    then ;
+
+\ Modular exponentiation function.
+: **mod ( n1 n2 n3 -- n4 )
+   1 { b e m r }
+   e 0< if
+      abort" Inverse modular exponentiation not implemented."
+   else
+      begin e ( Fast exponentiation by squaring. )
+      while e 1 and if r b m */mod drop to r then
+            b b m */mod drop to b
+            e 1 rshift to e
+      repeat r
+   then ;

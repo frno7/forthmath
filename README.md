@@ -78,6 +78,10 @@ The file [math/exponent.fth](math/exponent.fth) defines words related to
 The word `**` computes integer exponentiation using efficient
 [exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
 For example, `3 4 **` gives `81` which corresponds to 3<sup>4</sup> = 81.
+The word `**mod` computes
+[modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation).
+For example, `5 3 13 **mod` gives `8` which corresponds to
+5<sup>3</sup> = 125 = 8 mod 13.
 
 ## Fibonacci numbers
 
