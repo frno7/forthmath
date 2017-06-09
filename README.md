@@ -109,6 +109,17 @@ The word `**mod` computes
 For example, `5 3 13 **mod` gives `8` which corresponds to
 5<sup>3</sup> = 125 = 8 mod 13.
 
+## Logarithms
+
+The file [math/log.fth](math/log.fth) defines words related to
+[logarithms](https://en.wikipedia.org/wiki/Logarithm).
+
+The words `log2-floor` and `log2-ceiling` compute the log<sub>2</sub> using
+integer arithmetics only, where the inequalities `log2-floor` ≤
+log<sub>2</sub> ≤ `log2-ceiling` hold for any number.  Similarly, `ln-lower`
+and `ln-upper` give quick estimates with the inequalities `ln-lower` ≤
+ln ≤ `ln-upper`.
+
 ## Fibonacci numbers
 
 The file [math/fibonacci.fth](math/fibonacci.fth) defines words related to
@@ -122,17 +133,6 @@ small due to [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
 The word `traverse-fibonacci` can be used to iterate over the Fibonacci
 sequence. The word `fibonacci` corresponds to _F_<sub>_n_</sub> and thus
 `9 fibonacci` gives `34`.
-
-## Logarithms
-
-The file [math/log.fth](math/log.fth) defines words related to
-[logarithms](https://en.wikipedia.org/wiki/Logarithm).
-
-The words `log2-floor` and `log2-ceil` compute the log<sub>2</sub> using
-integer arithmetics only, where the inequalities `log2-floor` ≤
-log<sub>2</sub> ≤ `log2-ceil` hold for any number.  Similarly, `ln-lower`
-and `ln-upper` give quick estimates with the inequalities `ln-lower` ≤
-ln ≤ `ln-upper`.
 
 ## Auxiliary
 
