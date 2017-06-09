@@ -1,11 +1,10 @@
 \ Copyright 2017 Fredrik Noring
 
 require aux/reverse.fth
+require math/gcd.fth
 
 \ Remove n1 from the stack and then remove n1 additional stack items.
 : ndrop ( n1 * n n1 -- ) 0 +do drop loop ; \ FIXME
-
-\ FIXME Factorise using Pollard's rho algorithm instead of trial division.
 
 : traverse-factors' { n d xt -- f abs[n/d] }
 	d n 0< if negate then xt execute
@@ -46,3 +45,23 @@ require aux/reverse.fth
 
 \ Computes the number of distinct prime divisors of a number.
 : distinct-factor-count ( n1 -- n2 ) factor-exponents { n } n 2* ndrop n ;
+
+: pollard-rho-pseudo ( n1 n2 -- n3 ) { n m } n n m */mod drop 1+ m mod ;
+: pollard-rho-factor ( n1 n2 -- n3 f )
+	dup 1 { n x y d }
+	begin	d 1 =
+	while	x n pollard-rho-pseudo to x
+		y n pollard-rho-pseudo
+		  n pollard-rho-pseudo to y
+		x y - abs n gcd to d
+	repeat
+    d n = if 0 false else d true then ;
+: order-factors ( n1 * n n1 -- n1 * n n1 ) { n } n sort> n ;
+: pollard-rho-factors ( n1 -- i * n n2 )
+	0 swap
+	begin	dup 2 pollard-rho-factor
+	while	tuck / rot 1+ swap
+	repeat	drop swap 1+ order-factors ;
+
+\ FIXME factors>exponents and exponents>factors to convert
+\ between factor and exponent forms.

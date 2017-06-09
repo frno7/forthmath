@@ -10,7 +10,7 @@ The file [math/prime.fth](math/prime.fth) defines words related to
 
 The word `primes` gives a number of primes on the data stack. For example,
 `9 primes` gives `23 19 17 13 11 7 5 3 2`. Using `traverse-primes` one can
-for example define `prime` as:
+for example compute the nth prime number p<sub>n</sub> by defining `prime` as:
 
 ```forth
 : prime' ( n p -- n ) nip true ; ( True to obtain next prime number. )
@@ -45,7 +45,7 @@ The word `factors` factorises a given integer into primes. For example,
 stack, where the top integer `3` indicates the number of prime factors and
 then the factors `13`, `23` and `43` follow from smallest to largest.
 
-Using `traverse-factors` one can for example define words for the
+Using `traverse-factors` one can for example define words for finding the
 smallest or largest prime factor of a given integer:
 
 ```forth
@@ -69,6 +69,13 @@ factors` gives `19 13 13 7 4` where `13` is repeated twice. The word
 exponents. Thus `22477 factor-exponents` gives `19 1 13 2 7 1 3` where the top
 integer `3` indicates the number of distinct primes, followed by the pairs of
 primes and exponents corresponding to 7<sup>1</sup>·13<sup>2</sup>·19<sup>1</sup>.
+
+The [Pollard Monte Carlo factorisation method](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm)
+is potentially very fast, but since it is a probabalistic method in can be slow
+and even fail to find factors of composite numbers. For example,
+`pollard-rho-factors 4267640728818788929` gives the two factors
+3456789019 and 1234567891 within a fraction of a second on a 64 bit Forth
+system.
 
 ## Divisors
 

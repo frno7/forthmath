@@ -59,3 +59,7 @@ T{   210 factor-exponents    ->    7 1  5 1  3 1  2 1    4 }T
 T{   715 factor-exponents    ->        13 1 11 1  5 1    3 }T
 T{  9295 factor-exponents    ->        13 2 11 1  5 1    3 }T
 T{ 22477 factor-exponents    ->        19 1 13 2  7 1    3 }T
+
+T{    43 pollard-rho-factors ->      43 1 }T
+T{  8051 pollard-rho-factors ->  97  83 2 }T
+T{ 10403 pollard-rho-factors -> 103 101 2 }T
