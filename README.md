@@ -24,7 +24,7 @@ can be slow especially for large indices. The words `prime-lower` and
 `prime-lower` ≤ `prime` ≤ `prime-upper` hold for any number.
 
 The [prime-counting function](https://en.wikipedia.org/wiki/Prime-counting_function)
-denoted by π(n) is defined by the word `prime-count`. For example, `23
+denoted by π(_n_) is defined by the word `prime-count`. For example, `23
 prime-count` gives `9` because there are 9 primes below or equal to 23. Since
 this computation can be slow there are words for quick estimates of lower and
 upper bounds, where the inequalities `prime-count-lower` ≤ `prime-count` ≤
@@ -89,7 +89,7 @@ The word `divisors` gives the divisors of a number. For example,
 the divisor count and then the divisors follow from smallest to largest.
 `traverse-divisors` can be used to iterate over all divisors.
 
-The sum of positive divisors function denoted by σ<sub>x</sub>(n) is defined
+The sum of positive divisors function denoted by σ<sub>x</sub>(_n_) is defined
 by `divisor-sum`. With x = 0 the function corresponds to `divisor-count`.
 
 The word `gcd` gives the
@@ -114,18 +114,29 @@ For example, `3 4 **` gives `81` which corresponds to 3<sup>4</sup> = 81.
 The word `**mod` computes
 [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation).
 For example, `5 3 13 **mod` gives `8` which corresponds to
-5<sup>3</sup> = 125 = 8 mod 13.
+5<sup>3</sup> = 125 = 8 (mod 13).
 
 ## Logarithms
 
 The file [math/log.fth](math/log.fth) defines words related to
 [logarithms](https://en.wikipedia.org/wiki/Logarithm).
 
-The words `log2-floor` and `log2-ceiling` compute the log<sub>2</sub> using
+The words `log2-floor` and `log2-ceiling` compute log<sub>2</sub> using
 integer arithmetics only, where the inequalities `log2-floor` ≤
 log<sub>2</sub> ≤ `log2-ceiling` hold for any number.  Similarly, `ln-lower`
 and `ln-upper` give quick estimates with the inequalities `ln-lower` ≤
 ln ≤ `ln-upper`.
+
+## Matrices
+
+The file [math/matrix.fth](math/matrix.fth) defines words related to
+[matrices](https://en.wikipedia.org/wiki/Matrix_(mathematics)).
+
+Matrices are laid out in the following way on the stack: a 2×3 matrix having
+dimensions 2 rows and 3 columns with elements _a_, _b_ and _c_ in the first
+row and _d_, _e_ and _f_ in the second row is represented on the stack with
+`a b c d e f 3 2`. Adding, subtracting and negating matrices are defined by
+`matrix+`, `matrix-` and `matrix-negate`.
 
 ## Fibonacci numbers
 
@@ -154,9 +165,9 @@ space as a scratch pad, similar to `>r` and `nr>`.
 
 The word `reverse` reversers a given number of items on the stack.
 
-The generic `sort` function takes an execution token for comparisions.
-The words `sort>` and `sort<` order a given number of items on the stack,
-in ascending or descending order, and are implemented as:
+The generic `sort` function takes an execution token for comparisons. The words
+`sort>` and `sort<` order a given number of items on the stack, in ascending or
+descending order, and are implemented as:
 
 ```forth
 : sort> ( n * x n -- n * x ) ['] > sort ; \ Sort in ascending order.

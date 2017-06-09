@@ -7,6 +7,7 @@ include test-factor.fth
 include test-fibonacci.fth
 include test-gcd.fth
 include test-log.fth
+include test-matrix.fth
 include test-nallot.fth
 include test-prime.fth
 include test-reverse.fth
