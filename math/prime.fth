@@ -21,8 +21,8 @@ require math/log.fth
 	n 0<= if abort" Nonpositive prime index" then
 	n ln-upper n ln-upper 1 max ln-upper + n * ;
 
-: allot0  ( n -- a ) here swap dup allot erase ;
-: bitset  ( n -- a ) here swap 7 + 8 / allot0 ;
+: allot0  ( n -- ) here swap dup allot erase ;
+: bitset  ( n -- ) 7 + 8 / allot0 ;
 : bitset@ ( a n -- f ) 8 /mod rot + @ 1 rot lshift and 0<> ;
 : bitset! ( a n -- ) 8 /mod rot + dup -rot @ 1 rot lshift or swap ! ;
 
@@ -36,8 +36,8 @@ require math/log.fth
 \ implicitly marked, thus only using half the memory of a complete list.
 : traverse-primes-preceding ( n xt -- )
 	over 2 < if 2drop exit then
-	swap 1+ { xt n }
-	n bitset2 { v }
+	swap 1+ here { xt n v }
+	n bitset2
 	n 2 +do
 		v i bitset2@ invert
 		i 2 = or ( All even numbers except 2 are composite. )
