@@ -3,14 +3,11 @@
 \ Greatest common divisor.
 : gcd ( n1 n2 -- n3 ) begin ?dup while tuck mod repeat abs ;
 
-: /symmetric ( n1 n2 -- n3 ) \ FIXME Is there a better way to do this?
-	2dup / dup 0< if drop negate / negate else -rot 2drop then ;
-
 \ Extended greatest common divisor.
 : extended-gcd ( n1 n2 -- n3 n4 n5 )
 	1 0 0 1 { n m d c b a }
 	begin	m 0<>
-	while	n m /symmetric
+	while	n s>d m sm/rem nip ( Symmetric division is required: n m / )
 		dup a * c swap - to c
 		dup b * d swap - to d
 		    m * n swap - to n
