@@ -10,24 +10,25 @@ The file [math/prime.fth](math/prime.fth) defines words related to
 
 The word `primes` gives a number of primes on the data stack. For example,
 `9 primes` gives `23 19 17 13 11 7 5 3 2`. Using `traverse-primes` one can
-for example compute the nth prime number p<sub>n</sub> by defining `prime` as:
+for example compute the nth prime number _p_<sub>_n_</sub> by defining `prime`
+as:
 
 ```forth
-: prime' ( n p -- n ) nip true ; ( True to obtain next prime number. )
+: prime' ( n n -- n ) nip true ; ( True to obtain next prime number. )
 : prime  ( n -- n ) 0 swap ['] prime' traverse-primes ;
 ```
 
-Thus `9 prime` gives `23`. Computing the prime can be slow especially for large
-indices. The words `prime-lower` and `prime-upper` give quick estimates of
-lower and upper bounds. The inequalities `prime-lower` ≤ `prime` ≤ `prime-upper`
-hold for any number.
+Thus `9 prime` gives `23` corresponding to _p_<sub>9</sub>. Computing the prime
+can be slow especially for large indices. The words `prime-lower` and
+`prime-upper` give quick estimates of lower and upper bounds. The inequalities
+`prime-lower` ≤ `prime` ≤ `prime-upper` hold for any number.
 
 The [prime-counting function](https://en.wikipedia.org/wiki/Prime-counting_function)
-is defined by the word `prime-count`. For example, `23 prime-count` gives `9`
-because there are 9 primes below or equal to 23. Since this computation can be
-slow there are words for quick estimates of lower and upper bounds, where
-the inequalities `prime-count-lower` ≤ `prime-count` ≤ `prime-count-upper` hold
-for any number.
+denoted by π(n) is defined by the word `prime-count`. For example, `23
+prime-count` gives `9` because there are 9 primes below or equal to 23. Since
+this computation can be slow there are words for quick estimates of lower and
+upper bounds, where the inequalities `prime-count-lower` ≤ `prime-count` ≤
+`prime-count-upper` hold for any number.
 
 The word `primes-preceding` gives on the data stack all primes below or equal
 to a certain number. Thus `23  primes-preceding` gives `23 19 17 13 11 7 5 3 2
@@ -71,7 +72,7 @@ integer `3` indicates the number of distinct primes, followed by the pairs of
 primes and exponents corresponding to 7<sup>1</sup>·13<sup>2</sup>·19<sup>1</sup>.
 
 The [Pollard Monte Carlo factorisation method](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm)
-is potentially very fast, but since it is a probabalistic method in can be slow
+is potentially very fast, but since it is a probabalistic method it can be slow
 and even fail to find factors of composite numbers. For example,
 `pollard-rho-factors 4267640728818788929` gives the two factors
 3456789019 and 1234567891 within a fraction of a second on a 64 bit Forth
@@ -88,9 +89,8 @@ The word `divisors` gives the divisors of a number. For example,
 the divisor count and then the divisors follow from smallest to largest.
 `traverse-divisors` can be used to iterate over all divisors.
 
-The word `divisor-sum` implements the sum of positive divisors (sigma)
-function σ<sub>x</sub>(n). With x = 0 the function corresponds to
-`divisor-count`.
+The sum of positive divisors function denoted by σ<sub>x</sub>(n) is defined
+by `divisor-sum`. With x = 0 the function corresponds to `divisor-count`.
 
 The word `gcd` gives the
 [greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor).
@@ -134,7 +134,7 @@ The file [math/fibonacci.fth](math/fibonacci.fth) defines words related to
 
 The word `fibonaccis` gives a Fibonacci sequence with a given number of
 terms on the data stack. Thus `10 fibonaccis` gives `34 21 13 8 5 3 2 1
-1 0` starting at _F_<sub>0</sub>. The sequence is infinite in principle and
+1 0` starting at _F_<sub>0</sub>. The sequence is infinite in principle but
 since the terms grow at an exponential rate the number of useful terms is
 small due to [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
 The word `traverse-fibonacci` can be used to iterate over the Fibonacci
