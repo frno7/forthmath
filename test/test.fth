@@ -1,5 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
+include test-euler-phi.fth
 include test-exponent.fth
 include test-factor.fth
 include test-fibonacci.fth
