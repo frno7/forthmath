@@ -5,4 +5,5 @@ include test-fibonacci.fth
 include test-log.fth
 include test-nallot.fth
 include test-prime.fth
+include test-reverse.fth
 include test-sort.fth
