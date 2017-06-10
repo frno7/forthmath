@@ -5,6 +5,8 @@ require aux/nallot.fth
 : matrix-rows { a -- n } a @ ;
 : matrix-cols { a -- n } a cell+ @ ;
 : matrix-dimensions { a -- n n } a matrix-cols a matrix-rows ;
+: matrix@ { col row a -- } a matrix-cols row * col + 2 + cells a + @ ;
+: matrix! { col row a -- } a matrix-cols row * col + 2 + cells a + ! ;
 
 : matrix>allot ( i * n n n -- )
 	here { cols rows a }
@@ -12,10 +14,16 @@ require aux/nallot.fth
 	cols rows 2 a n!
 	cols rows * dup 2 + cells a + -n! ;
 
-: matrix+allot ( n n -- )
+: matrix0allot ( n n -- )
 	here { cols rows a }
 	cols rows * 2 + cells dup allot a swap erase
 	cols rows 2 a n! ;
+
+: matrix1allot ( n -- )
+	here { n a } n n matrix0allot n 0 +do 1 i i a matrix! loop ;
+
+: matrix0 ( n n -- ) { cols rows } cols rows * 0 +do 0 loop cols rows ;
+: matrix1 ( n -- ) { n } n 0 +do n 0 +do i j = abs loop loop n n ;
 
 : matrix-allot { a -- } a matrix-dimensions * 2 + negate cells allot ;
 
@@ -23,9 +31,6 @@ require aux/nallot.fth
 	dup matrix-dimensions { a cols rows }
 	cols rows * a 2 cells + n@
 	cols rows ;
-
-: matrix@ { col row a -- } a matrix-cols row * col + 2 + cells a + @ ;
-: matrix! { col row a -- } a matrix-cols row * col + 2 + cells a + ! ;
 
 : matrix-unary ( a a xt -- )
 	0 0 0 0 { a b xt rows-a cols-a rows-b cols-b }
@@ -117,7 +122,7 @@ require aux/nallot.fth
 	here to b matrix>allot
 	here to a matrix>allot
 	here to c b matrix-cols
-		  a matrix-rows matrix+allot
+		  a matrix-rows matrix0allot
 	a b c matrix-multiply
 	c allot>matrix
 	a matrix-allot
