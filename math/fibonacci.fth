@@ -15,11 +15,6 @@ require math/matrix.fth
 	while	a b + b to a to b
 	repeat ;
 
-\ FIXME Computing the Fibonacci number in matrix form enables very fast
-\ exponentiation and inversion so that stack reversal can be avoided. However,
-\ the number of useful Fibonacci numbers is very limited due to integer
-\ overflow, so it might not matter in practice.
-
 : fibonaccis' ( n1 n2 -- n2 n3 true | false )
 	swap dup 1 <= if drop false else 1- true then ;
 \ Remove n from the stack and compute F_0, F_1, ..., F_{n-1} up to and
@@ -30,13 +25,16 @@ require math/matrix.fth
 : fibonacci' ( k n n -- k-1 n true | n false )
 	nip swap dup 1 < if drop false else 1- swap true then ;
 \ Remove n from the stack and compute F_n, the nth Fibonacci number.
-: fibonacci ( n1 -- n2 ) 0 ['] fibonacci' traverse-fibonaccis ;
+: fibonacci ( n1 -- n2 )
+	{ n }
+	n abs 0 ['] fibonacci' traverse-fibonaccis
+	n 0< n 2 mod 0= and if negate then ;
 
 : fibonacci-matrix ( -- 4 * n n n )
 	1 1
 	1 0 2 2 ;
 : fibonacci-mod ( n n -- n )
 	0 { n m r }
-	fibonacci-matrix n m matrix**mod
+	fibonacci-matrix n abs m matrix**mod
 	0 1 matrix-element to r
-	matrix-drop r ;
+	matrix-drop r n 0< n 2 mod 0= and if negate then m mod ;

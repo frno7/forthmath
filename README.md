@@ -159,7 +159,8 @@ since the terms grow at an exponential rate the number of useful terms is
 small due to [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
 The word `traverse-fibonacci` can be used to iterate over the Fibonacci
 sequence. The word `fibonacci` corresponds to _F_<sub>_n_</sub> and thus
-`9 fibonacci` gives `34`.
+`9 fibonacci` gives `34`, including negative indices such as `-6 fibonacci`
+giving `-8`.
 
 Fibonacci numbers can also be computed in [matrix
 form](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form) using
