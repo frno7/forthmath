@@ -1,6 +1,7 @@
 \ Copyright 2017 Fredrik Noring
 
 require aux/nallot.fth
+require math/modulo.fth
 
 : matrix-rows { a -- n } a @ ;
 : matrix-cols { a -- n } a cell+ @ ;
@@ -27,12 +28,20 @@ require aux/nallot.fth
 
 : matrix-allot { a -- } a matrix-dimensions * 2 + negate cells allot ;
 
-: matrix-multiply-element ( -- ) * + ;
+: matrix-multiply-element ( n n n -- n n ) * + ;
+: matrix-multiply-element-modulo ( n n n n -- n n n )
+	{ m s a b } m a b m *mod s m +mod ;
+
+: allot+matrix ( a -- )
+	dup matrix-dimensions { a cols rows }
+	cols rows * a 2 cells + n@
+	cols rows ;
 
 : allot>matrix ( a -- )
 	dup matrix-dimensions { a cols rows }
 	cols rows * a 2 cells + n@
-	cols rows ;
+	cols rows
+	cols rows * 2 + cells negate allot ;
 
 : matrix-unary ( a a xt -- )
 	0 0 0 0 { a b xt rows-a cols-a rows-b cols-b }
@@ -131,17 +140,26 @@ require aux/nallot.fth
 	b matrix-allot ;
 
 : matrix-exponentation ( i * n n n n xt -- i * n n n )
-	0 0 0 { e xt b r t }
+	0 0 0 0 0 0 { e xt a b c m r t }
 	e 0< if abort" Matrix inversion not implemented." then
-	here to b matrix>allot ( Base matrix. )
-	b matrix-dimensions <> if abort" Matrix dimensions mismatch" then
-	here to r b matrix-rows matrix1allot ( Result matrix. )
-	here to t b matrix-dimensions matrix0allot ( Temporary matrix. )
+	here dup to a to m matrix>allot ( Base matrix. )
+	m matrix-dimensions <> if abort" Matrix dimensions mismatch" then
+	here dup to b to r m matrix-rows matrix1allot ( Result matrix. )
+	here dup to c to t m matrix-dimensions matrix0allot ( Temporary matrix. )
 	begin	e ( Fast exponentiation by squaring. )
-	while	e 1 and if r b t xt matrix-multiply r t to r to t then
-		b b t xt matrix-multiply b t to b to t
+	while	e 1 and if r m t xt matrix-multiply r t to r to t then
+		m m t xt matrix-multiply m t to m to t
 		e 1 rshift to e
-	repeat r allot>matrix ;
+	repeat
+	r allot+matrix
+	c matrix-allot
+	b matrix-allot
+	a matrix-allot ;
 
 : matrix** ( i * n n n n -- i * n n n )
 	['] matrix-multiply-element matrix-exponentation ;
+
+: matrix**mod ( i * n n n n n -- i * n n n )
+	here { e m b } matrix>allot
+	m b allot>matrix e ['] matrix-multiply-element-modulo matrix-exponentation
+	matrix>allot drop b ( Drop modulo. ) allot>matrix ;

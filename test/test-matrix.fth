@@ -76,3 +76,17 @@ T{ matrix3x3 2 matrix** ->   110   134   164
 T{ matrix3x3 3 matrix** ->  3946  4920  6064
                            11456 14278 17588
                            20632 25700 31654 3 3 }T
+
+\ Modular matrix exponentiation.
+T{ matrix3x3 0 10 matrix**mod -> 1 0 0
+                                 0 1 0
+                                 0 0 1 3 3 }T
+T{ matrix3x3 1 10 matrix**mod -> 2 3 5
+	                         7 1 3
+	                         7 9 3 3 3 }T
+T{ matrix3x3 2 10 matrix**mod -> 0 4 4
+                                 2 9 7
+		                 8 7 1 3 3 }T
+T{ matrix3x3 3 10 matrix**mod -> 6 0 4
+                                 6 8 8
+                                 2 0 4 3 3 }T
