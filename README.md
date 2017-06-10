@@ -147,6 +147,34 @@ defined by `matrix+`, `matrix-`, `matrix-negate` and `matrix*`. The word
 `matrix**` defines matrix exponentiation, and the words `matrix0` and `matrix1`
 give the zero and identity matrices.
 
+## Special numbers
+
+The files
+[math/binomial.fth](math/binomial.fth),
+[math/bernoulli.fth](math/bernoulli.fth) and
+[math/faulhaber.fth](math/faulhaber.fth)
+define words related to special numbers.
+
+The word `binomial` corresponds to
+[binomial numbers](https://en.wikipedia.org/wiki/Binomial_number). For example,
+`7 3 binomial` gives `35`. The word `bernoulli` corresponds to
+[Bernoulli numbers](https://en.wikipedia.org/wiki/Bernoulli_number). For example,
+`12 bernoulli` gives the rational number `-691 2730`.
+The word `faulhaber` corresponds to
+[Faulhaber’s formula](https://en.wikipedia.org/wiki/Faulhaber%27s_formula). For
+example, `7 2 faulhaber` gives `91` which corresponds to
+1<sup>2</sup>+
+2<sup>2</sup>+
+3<sup>2</sup>+
+4<sup>2</sup>+
+5<sup>2</sup>+
+6<sup>2</sup>=91.
+In general
+`1 faulhaber` corresponds to the [triangular numbers](https://en.wikipedia.org/wiki/Triangular_number),
+`2 faulhaber` to the [square pyramidal numbers](https://en.wikipedia.org/wiki/Square_pyramidal_number),
+`3 faulhaber` to the [squared triangular numbers](https://en.wikipedia.org/wiki/Squared_triangular_number),
+and so on.
+
 ## Fibonacci numbers
 
 The file [math/fibonacci.fth](math/fibonacci.fth) defines words related to
@@ -180,7 +208,7 @@ equations](https://en.wikipedia.org/wiki/Recurrence_relation):
 
 For example, one can verify that the last two digits of _F_<sub>19</sub> by
 `19 100 fibonacci-mod` gives `81`. Since matrix exponentiation is very
-efficient, one can compute much larger fibonacci numbers. For example,
+efficient, one can compute much larger Fibonacci numbers. For example,
 `4267640728818788929 10000 fibonacci-mod` quickly gives `4129` which
 corresponds to _F_<sub>4267640728818788929</sub> (mod 10000).
 
