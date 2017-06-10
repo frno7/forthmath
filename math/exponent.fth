@@ -1,5 +1,7 @@
 \ Copyright 2017 Fredrik Noring
 
+require math/modulo.fth
+
 \ Integer exponentiation function. Note that in Forth with negative bases and
 \ exponents the result is implementation defined, because the division quotient
 \ may be rounded to either negative infinity (floored division) or rounded
@@ -24,7 +26,7 @@
       abort" Inverse modular exponentiation not implemented."
    else
       begin e ( Fast exponentiation by squaring. )
-      while e 1 and if r b m */mod drop to r then
+      while e 1 and if r b m *mod to r then
             b b m */mod drop to b
             e 1 rshift to e
       repeat r

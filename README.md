@@ -113,8 +113,6 @@ The word `**` computes integer exponentiation using efficient
 For example, `3 4 **` gives `81` which corresponds to 3<sup>4</sup> = 81.
 The word `**mod` computes
 [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation).
-For example, `5 3 13 **mod` gives `8` which corresponds to
-5<sup>3</sup> = 125 = 8 (mod 13).
 
 ## Logarithms
 
@@ -126,6 +124,15 @@ integer arithmetics only, where the inequalities `log2-floor` ≤
 log<sub>2</sub> ≤ `log2-ceiling` hold for any number.  Similarly, `ln-lower`
 and `ln-upper` give quick estimates with the inequalities `ln-lower` ≤
 ln ≤ `ln-upper`.
+
+## Modular arithmetic
+
+The file [math/modulo.fth](math/modulo.fth) defines words related to
+[modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
+
+The words `+mod`, `-mod`, `*mod` and `**mod` define modular arithmetic in a
+natural way. For example, `5 3 13 **mod` gives `8` which corresponds to
+5<sup>3</sup> = 125 = 8 (mod 13).
 
 ## Matrices
 
