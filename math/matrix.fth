@@ -27,6 +27,8 @@ require aux/nallot.fth
 
 : matrix-allot { a -- } a matrix-dimensions * 2 + negate cells allot ;
 
+: matrix-multiply-element ( -- ) * + ;
+
 : allot>matrix ( a -- )
 	dup matrix-dimensions { a cols rows }
 	cols rows * a 2 cells + n@
@@ -67,16 +69,16 @@ require aux/nallot.fth
 		c cell+ to c
 	loop loop ;
 
-: matrix-multiply-elements ( n a n a -- n )
-	0 { cols-b b cols-a a s }
-	cols-a 0 +do
-		a @ b @ * s + to s
+: matrix-multiply-elements ( n a n a xt -- n )
+	{ cols-b b cols-a a xt }
+	0 cols-a 0 +do
+		a @ b @ xt execute
 		a cell+ to a
 		b cols-b cells + to b
-	loop s ;
+	loop ;
 
-: matrix-multiply ( a a a -- )
-	0 0 0 0 0 0 { a b c rows-a cols-a rows-b cols-b rows-c cols-c }
+: matrix-multiply ( a a a xt -- )
+	0 0 0 0 0 0 { a b c xt rows-a cols-a rows-b cols-b rows-c cols-c }
 	a matrix-dimensions to rows-a to cols-a
 	b matrix-dimensions to rows-b to cols-b
 	c matrix-dimensions to rows-c to cols-c
@@ -89,7 +91,7 @@ require aux/nallot.fth
 	c 2 cells + to c
 	rows-c 0 +do
 	cols-c 0 +do
-		cols-b b cols-a a matrix-multiply-elements c !
+		cols-b b cols-a a xt matrix-multiply-elements c !
 		b cell+ to b
 		c cell+ to c
 	loop a cols-a cells + to a
@@ -123,20 +125,23 @@ require aux/nallot.fth
 	here to a matrix>allot
 	here to c b matrix-cols
 		  a matrix-rows matrix0allot
-	a b c matrix-multiply
+	a b c ['] matrix-multiply-element matrix-multiply
 	c allot>matrix
 	a matrix-allot
 	b matrix-allot ;
 
-: matrix** ( i * n n n n -- i * n n n )
-	0 0 0 { e b r t }
+: matrix-exponentation ( i * n n n n xt -- i * n n n )
+	0 0 0 { e xt b r t }
 	e 0< if abort" Matrix inversion not implemented." then
 	here to b matrix>allot ( Base matrix. )
 	b matrix-dimensions <> if abort" Matrix dimensions mismatch" then
 	here to r b matrix-rows matrix1allot ( Result matrix. )
 	here to t b matrix-dimensions matrix0allot ( Temporary matrix. )
 	begin	e ( Fast exponentiation by squaring. )
-	while	e 1 and if r b t matrix-multiply r t to r to t then
-		b b t matrix-multiply b t to b to t
+	while	e 1 and if r b t xt matrix-multiply r t to r to t then
+		b b t xt matrix-multiply b t to b to t
 		e 1 rshift to e
 	repeat r allot>matrix ;
+
+: matrix** ( i * n n n n -- i * n n n )
+	['] matrix-multiply-element matrix-exponentation ;
