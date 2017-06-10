@@ -6,6 +6,7 @@ include test-divisor.fth
 include test-euler-phi.fth
 include test-exponent.fth
 include test-factor.fth
+include test-faulhaber.fth
 include test-fibonacci.fth
 include test-gcd.fth
 include test-log.fth
