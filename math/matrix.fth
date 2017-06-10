@@ -127,3 +127,16 @@ require aux/nallot.fth
 	c allot>matrix
 	a matrix-allot
 	b matrix-allot ;
+
+: matrix** ( i * n n n n -- i * n n n )
+	0 0 0 { e b r t }
+	e 0< if abort" Matrix inversion not implemented." then
+	here to b matrix>allot ( Base matrix. )
+	b matrix-dimensions <> if abort" Matrix dimensions mismatch" then
+	here to r b matrix-rows matrix1allot ( Result matrix. )
+	here to t b matrix-dimensions matrix0allot ( Temporary matrix. )
+	begin	e ( Fast exponentiation by squaring. )
+	while	e 1 and if r b t matrix-multiply r t to r to t then
+		b b t matrix-multiply b t to b to t
+		e 1 rshift to e
+	repeat r allot>matrix ;

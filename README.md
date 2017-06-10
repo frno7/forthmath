@@ -136,7 +136,9 @@ Matrices are laid out in the following way on the stack: a 2×3 matrix having
 dimensions 2 rows and 3 columns with elements _a_, _b_ and _c_ in the first
 row and _d_, _e_ and _f_ in the second row is represented on the stack with
 `a b c d e f 3 2`. Adding, subtracting, negating and multiplying matrices are
-defined by `matrix+`, `matrix-`, `matrix-negate` and `matrix*`.
+defined by `matrix+`, `matrix-`, `matrix-negate` and `matrix*`. The word
+`matrix**` defines matrix exponentiation, and the words `matrix0` and `matrix1`
+give the zero and identity matrices.
 
 ## Fibonacci numbers
 
