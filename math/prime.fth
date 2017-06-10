@@ -4,7 +4,7 @@ require aux/reverse.fth
 require math/factor.fth
 require math/log.fth
 
-: even? ( n -- f ) 2 mod 0 = ; \ FIXME
+: even? ( n -- f ) 1 and 0= ; \ FIXME
 
 \ n/ln[n] < π[n] < 1.25506·n/ln[n]
 \ where the left inequality holds for 17 ≤ n and the right inequality for 1 < n.

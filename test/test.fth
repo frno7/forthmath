@@ -1,5 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
+include test-binomial.fth
 include test-divisor.fth
 include test-euler-phi.fth
 include test-exponent.fth

@@ -195,7 +195,8 @@ memory to work effectively. The `n>allot` and `nallot>` words move _n_ cells
 from the stack to data space and vice versa. This makes it possible to use data
 space as a scratch pad, similar to `>r` and `nr>`.
 
-The word `reverse` reversers a given number of items on the stack.
+The word `reverse` reversers a given number of items on the stack, and the word
+`ndrop` drops _n_ items from the stack.
 
 The generic `sort` function takes an execution token for comparisons. The words
 `sort>` and `sort<` order a given number of items on the stack, in ascending or
