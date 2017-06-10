@@ -161,6 +161,28 @@ The word `traverse-fibonacci` can be used to iterate over the Fibonacci
 sequence. The word `fibonacci` corresponds to _F_<sub>_n_</sub> and thus
 `9 fibonacci` gives `34`.
 
+Fibonacci numbers can also be computed in [matrix
+form](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form) using
+exponentiation of a 2×2 system of linear [difference
+equations](https://en.wikipedia.org/wiki/Recurrence_relation):
+
+```forth
+: fibonacci-matrix ( -- 4 * n n n )
+	1 1
+	1 0 2 2 ;
+: fibonacci-mod ( n n -- n )
+	0 { n m r }
+	fibonacci-matrix n m matrix**mod
+	0 1 matrix-element to r
+	matrix-drop r ;
+```
+
+For example, one can verify that the last two digits of _F_<sub>19</sub> by
+`19 100 fibonacci-mod` gives `81`. Since matrix exponentiation is very
+efficient, one can compute much larger fibonacci numbers. For example,
+`4267640728818788929 10000 fibonacci-mod` quickly gives `4129` which
+corresponds to _F_<sub>4267640728818788929</sub> (mod 10000).
+
 ## Auxiliary
 
 The files [aux/nallot.fth](aux/nallot.fth),

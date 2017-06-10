@@ -1,11 +1,9 @@
 \ Copyright 2017 Fredrik Noring
 
+require aux/nallot.fth
 require aux/reverse.fth
 require aux/sort.fth
 require math/gcd.fth
-
-\ Remove n1 from the stack and then remove n1 additional stack items.
-: ndrop ( n1 * n n1 -- ) 0 +do drop loop ; \ FIXME
 
 : traverse-factors' { n d xt -- f abs[n/d] }
 	d n 0< if negate then xt execute

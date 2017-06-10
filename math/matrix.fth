@@ -8,6 +8,9 @@ require math/modulo.fth
 : matrix-dimensions { a -- n n } a matrix-cols a matrix-rows ;
 : matrix@ { col row a -- } a matrix-cols row * col + 2 + cells a + @ ;
 : matrix! { col row a -- } a matrix-cols row * col + 2 + cells a + ! ;
+: matrix-drop ( i * n n n -- ) { cols rows } cols rows * ndrop ;
+: matrix-element ( i * n n n n n -- i * n n n n )
+	{ col row } over row * col + 2 + pick ;
 
 : matrix>allot ( i * n n n -- )
 	here { cols rows a }

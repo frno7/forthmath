@@ -21,3 +21,10 @@ T{ 6 fibonaccis ->         5 3 2 1 1 0 }T
 T{ 7 fibonaccis ->       8 5 3 2 1 1 0 }T
 T{ 8 fibonaccis ->    13 8 5 3 2 1 1 0 }T
 T{ 9 fibonaccis -> 21 13 8 5 3 2 1 1 0 }T
+
+T{ 19 100 fibonacci-mod -> 81 }T
+: test-fibonacci-mod
+	24 0 +do ( 0, 1, 2, ..., 28657 )
+		T{ i 1000 fibonacci-mod -> i fibonacci 1000 mod }T
+	loop ;
+test-fibonacci-mod

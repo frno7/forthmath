@@ -1,6 +1,7 @@
 \ Copyright 2017 Fredrik Noring
 
 require aux/reverse.fth
+require math/matrix.fth
 
 \ Remove xt from the stack and compute the Fibonacci numbers F_0, F_1, ....
 \ The invoked xt has the stack effect ( i * x n -- j * x flag ).
@@ -30,3 +31,12 @@ require aux/reverse.fth
 	nip swap dup 1 < if drop false else 1- swap true then ;
 \ Remove n from the stack and compute F_n, the nth Fibonacci number.
 : fibonacci ( n1 -- n2 ) 0 ['] fibonacci' traverse-fibonaccis ;
+
+: fibonacci-matrix ( -- 4 * n n n )
+	1 1
+	1 0 2 2 ;
+: fibonacci-mod ( n n -- n )
+	0 { n m r }
+	fibonacci-matrix n m matrix**mod
+	0 1 matrix-element to r
+	matrix-drop r ;
