@@ -1,5 +1,7 @@
 # Mathematics in Forth
 
+[![Build Status](https://travis-ci.org/frno7/forthmath.svg?branch=master)](https://travis-ci.org/frno7/forthmath)
+
 In the examples below the top stack item is shown right-most, following Forth
 convention.
 
@@ -146,7 +148,7 @@ row and _d_, _e_ and _f_ in the second row is represented on the stack as
 
 ```forth
 a b c
-d e f 3 2
+d e f  3 2
 ```
 
 In data-space this matrix has the following layout:
@@ -166,11 +168,11 @@ by a 3×2 matrix
 
 ```forth
      2   3   5
-     7  11  13 3 2
+     7  11  13  3 2
 
     17  19
     23  29
-    31  37 2 3
+    31  37  2 3
 
     matrix*
 ```
@@ -179,7 +181,7 @@ gives a 2×2 matrix:
 
 ```forth
    258 310
-   775 933 2 2
+   775 933  2 2
 ```
 
 Matrices can be moved and copied between the stack and data-space in several

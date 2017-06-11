@@ -1,0 +1,6 @@
+language: generic
+before_install:
+  - sudo apt-get update -q
+  - sudo apt-get install gforth
+script:
+  - gforth -e "fpath+ $(pwd)" test/test.fth -e bye

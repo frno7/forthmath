@@ -16,3 +16,5 @@ include test-nallot.fth
 include test-prime.fth
 include test-reverse.fth
 include test-sort.fth
+
+." Test complete." cr
