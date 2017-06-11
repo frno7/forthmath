@@ -5,6 +5,4 @@ require math/exponent.fth
 
 \ The Euler phi function.
 : euler-phi ( n1 -- n2 )
-	1 { p } factor-exponents 0 ?do
-		2dup ** -rot 1- ** - p * to p
-	loop p ;
+	factor-exponents 1 swap 0 ?do >r 2dup ** -rot 1- ** - r> * loop ;
