@@ -35,7 +35,7 @@ require math/modulo.fth
 : matrix-multiply-element-modulo ( n n n n -- n n n )
 	{ m s a b } m a b m *mod s m +mod ;
 
-: allot+matrix ( a -- )
+: allot+matrix ( a -- i * n n n )
 	dup matrix-dimensions { a cols rows }
 	cols rows * a 2 cells + n@
 	cols rows ;

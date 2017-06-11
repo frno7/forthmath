@@ -141,11 +141,54 @@ The file [math/matrix.fth](math/matrix.fth) defines words related to
 
 Matrices are laid out in the following way on the stack: a 2×3 matrix having
 dimensions 2 rows and 3 columns with elements _a_, _b_ and _c_ in the first
-row and _d_, _e_ and _f_ in the second row is represented on the stack with
-`a b c d e f 3 2`. Adding, subtracting, negating and multiplying matrices are
-defined by `matrix+`, `matrix-`, `matrix-negate` and `matrix*`. The word
-`matrix**` defines matrix exponentiation, and the words `matrix0` and `matrix1`
-give the zero and identity matrices.
+row and _d_, _e_ and _f_ in the second row is represented on the stack as
+`a b c d e f 3 2`, or stated with a different identation:
+
+```forth
+a b c
+d e f 3 2
+```
+
+In data-space this matrix has the following layout:
+
+Cell | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+**Value** | `2` | `3` | `a` | `b` | `c` | `d` | `e` | `f`
+
+Adding, subtracting, negating and multiplying matrices on the stack are
+defined by the words `matrix+`, `matrix-`, `matrix-negate` and `matrix*`. The
+word `matrix**` defines matrix exponentiation, and the words `matrix0` and
+`matrix1` give the zero and identity matrices. The word `matrix-drop` drops
+a matrix from the stack and `matrix-element` gives the element of particular
+row and column indices. The words `matrix-dimensions`, `matrix-rows` and
+`matrix-cols` give matrix dimensions. For example, multiplying a 2×3 matrix
+by a 3×2 matrix
+
+```forth
+     2   3   5
+     7  11  13 3 2
+
+    17  19
+    23  29
+    31  37 2 3
+
+    matrix*
+```
+
+gives a 2×2 matrix:
+
+```forth
+   258 310
+   775 933 2 2
+```
+
+Matrices can be moved and copied between the stack and data-space in several
+ways. The word `matrix>allot` moves a matrix off the stack to data-space
+appropriately reserved for by `allot`. The word `allot>matrix` is the inverse.
+The word `allot+matrix` copies a matrix from data-space to the stack, and the
+word `matrix-allot` removes a matrix from data-space by adjusting the `here`
+data-space pointer accordingly. The words `matrix0allot` and `matrix1allot`
+create the zero and identity matrices in data-space.
 
 ## Special numbers
 
@@ -220,7 +263,7 @@ define auxiliary words.
 
 Many algorithms need [direct access](https://en.wikipedia.org/wiki/Random_access)
 memory to work effectively. The `n>allot` and `nallot>` words move _n_ cells
-from the stack to data space and vice versa. This makes it possible to use data
+from the stack to data-space and vice versa. This makes it possible to use data
 space as a scratch pad, similar to `>r` and `nr>`.
 
 The word `reverse` reversers a given number of items on the stack, and the word
