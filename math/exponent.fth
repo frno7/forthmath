@@ -2,6 +2,9 @@
 
 require math/modulo.fth
 
+: -1** ( n -- n ) 1 and 1 lshift 1 swap - ; ( FIXME Denotation is incorrect
+	since it means n^-1 and not -1^n as intended. )
+
 \ Integer exponentiation function. Note that in Forth with negative bases and
 \ exponents the result is implementation defined, because the division quotient
 \ may be rounded to either negative infinity (floored division) or rounded

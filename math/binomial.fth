@@ -1,6 +1,6 @@
 \ Copyright 2017 Fredrik Noring
 
-: -1** ( n -- n ) 1 and 1 lshift 1 swap - ;
+require math/exponent.fth
 
 \ FIXME Avoid intermediate overflow if possible.
 \ FIXME Abort on definitive overflow.

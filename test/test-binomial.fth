@@ -4,18 +4,6 @@ require ttester.fth
 
 require math/binomial.fth
 
-T{ -5 -1** -> -1 }T
-T{ -4 -1** ->  1 }T
-T{ -3 -1** -> -1 }T
-T{ -2 -1** ->  1 }T
-T{ -1 -1** -> -1 }T
-T{  0 -1** ->  1 }T
-T{  1 -1** -> -1 }T
-T{  2 -1** ->  1 }T
-T{  3 -1** -> -1 }T
-T{  4 -1** ->  1 }T
-T{  5 -1** -> -1 }T
-
 T{ -4  0 binomial ->    1 }T
 T{ -4  1 binomial ->   -4 }T
 T{ -4  2 binomial ->   10 }T
