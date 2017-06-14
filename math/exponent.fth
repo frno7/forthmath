@@ -2,8 +2,8 @@
 
 require math/modulo.fth
 
-: -1** ( n -- n ) 1 and 1 lshift 1 swap - ; ( FIXME Denotation is incorrect
-	since it means n^-1 and not -1^n as intended. )
+\ Compute -1 n **.
+: -1swap** ( n -- n ) 1 and 1 lshift 1 swap - ;
 
 \ Integer exponentiation function. Note that in Forth with negative bases and
 \ exponents the result is implementation defined, because the division quotient

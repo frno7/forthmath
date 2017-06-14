@@ -4,17 +4,17 @@ require ttester.fth
 
 require math/exponent.fth
 
-T{ -5 -1** -> -1 }T
-T{ -4 -1** ->  1 }T
-T{ -3 -1** -> -1 }T
-T{ -2 -1** ->  1 }T
-T{ -1 -1** -> -1 }T
-T{  0 -1** ->  1 }T
-T{  1 -1** -> -1 }T
-T{  2 -1** ->  1 }T
-T{  3 -1** -> -1 }T
-T{  4 -1** ->  1 }T
-T{  5 -1** -> -1 }T
+T{ -5 -1swap** -> -1 }T
+T{ -4 -1swap** ->  1 }T
+T{ -3 -1swap** -> -1 }T
+T{ -2 -1swap** ->  1 }T
+T{ -1 -1swap** -> -1 }T
+T{  0 -1swap** ->  1 }T
+T{  1 -1swap** -> -1 }T
+T{  2 -1swap** ->  1 }T
+T{  3 -1swap** -> -1 }T
+T{  4 -1swap** ->  1 }T
+T{  5 -1swap** -> -1 }T
 
 T{  0  0 ** ->        1 }T
 T{  0  1 ** ->        0 }T
