@@ -105,6 +105,18 @@ that gives two addional integers related to
 For example, `240 46 extended-gcd` gives `-9 47 2` where `2` is the greatest
 common divisor and the identity holds as -9·240 + 47·46 = 2 = gcd(240, 46).
 
+## Rational numbers
+
+The file [math/rational.fth](math/rational.fth) defines words related to
+[rational numbers](https://en.wikipedia.org/wiki/Rational_number).
+
+Rationals are represented as two numbers on the stack with the denominator
+above the cell containing the numerator. The words `q+`, `q-`, `q*` and `q/`
+define rational arithmetic in a natural way. For example, `2 3 5 7 q+` gives
+`29 21` which corresponds to 2/3 + 5/7 = 29/21. Rational arithmetics
+[overflow](https://en.wikipedia.org/wiki/Integer_overflow) easily, especially
+intermediate calculations.
+
 ## Exponents
 
 The file [math/exponent.fth](math/exponent.fth) defines words related to
@@ -113,8 +125,6 @@ The file [math/exponent.fth](math/exponent.fth) defines words related to
 The word `**` computes integer exponentiation using efficient
 [exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
 For example, `3 4 **` gives `81` which corresponds to 3<sup>4</sup> = 81.
-The word `**mod` computes
-[modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation).
 
 ## Logarithms
 
@@ -133,8 +143,10 @@ The file [math/modulo.fth](math/modulo.fth) defines words related to
 [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
 
 The words `+mod`, `-mod`, `*mod` and `**mod` define modular arithmetic in a
-natural way. For example, `5 3 13 **mod` gives `8` which corresponds to
-5<sup>3</sup> = 125 = 8 (mod 13).
+natural way. For example, the word `**mod` computes
+[modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation)
+and so `5 3 13 **mod` gives `8` which corresponds to 5<sup>3</sup> = 125 = 8
+(mod 13).
 
 ## Matrices
 
